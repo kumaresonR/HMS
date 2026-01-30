@@ -1,0 +1,83 @@
+/* This targets every odd-indexed Col element */
+.myProfile .col:nth-child(odd) .card-animate {
+  background-color: #dcfce7;
+  color: #10AB94;
+  /* Light background for odd-indexed cards */
+}
+
+/* This targets every even-indexed Col element */
+.myProfile .col:nth-child(even) .card-animate {
+  background-color: #F3E8FF;
+  color: #9B70FF;
+  /* Darker background for even-indexed cards */
+}
+
+.myProfile .col:nth-child(even) i {
+
+  color: #9B70FF !important;
+  /* Darker background for even-indexed cards */
+}
+
+.myProfile .col:nth-child(odd) i {
+
+  color: #10AB94 !important;
+  /* Darker background for even-indexed cards */
+}
+
+.myProfile .avatar-title {
+  align-items: center;
+  background-color: #ffffff !important;
+  color: #fff;
+  display: flex;
+  font-weight: 500;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+  border-radius: 50% !important;
+
+}
+.myProfile .bg-purple{
+  background-color:  rgb(161 128 255) !important;;
+}
+
+.ProfileCardMain {
+  position: relative;
+  top: 75px;
+  bottom: 100px;
+  padding: 15px;
+
+}
+
+
+.personalDetailsCont .card {
+  box-shadow: 0 1px 4px 1px rgb(0 2 4 / 15%);
+}
+.profileCardTopLeft {
+  border: 2px solid #c1c1c1 !important;
+  position: relative;
+}
+.profileImgCard{
+  position: absolute;
+  left: 32%;
+  top: -100px;
+}
+
+.profileCardTopRight {
+  border: 2px solid #c1c1c1 !important;
+  border-left: none !important;
+}
+
+
+
+.profileBtnCont {
+  margin-top: 80PX;
+}
+
+.profileBottomContent{
+  position: relative;
+  top: 100px;
+}
+
+.myProfileMainContainer{
+  padding-bottom: 150px !important;
+}

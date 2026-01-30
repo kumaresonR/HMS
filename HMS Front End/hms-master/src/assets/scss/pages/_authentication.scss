@@ -1,0 +1,152 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Dancing+Script:wght@400..700&family=Monda:wght@400..700&display=swap');
+
+
+.auth-page-wrapper{
+    .auth-page-content{
+        padding-bottom: $footer-height;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+    }
+    .footer{
+        left: 0;
+        background-color: transparent;
+        color: var(--#{$prefix}body-color);
+    }
+}
+
+.auth-one-bg-position{
+    font-family: "Monda", serif !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 380px;
+    
+    @media (max-width: 575.98px) {
+        height: 280px;
+    }
+}
+
+.auth-one-bg{
+    // background-image: url("../../images/login-bg.jpeg");
+    background-image: url("../../images/loginPageBg.jpg");
+    background-position: center;
+    background-size: cover;
+
+    .bg-overlay{
+        background: linear-gradient(to right, var(--#{$prefix}primary-text-emphasis), var(--#{$prefix}primary));
+        opacity: 0.9;
+    }
+}
+.auth-page-content h3{
+    font-family: "Monda", serif !important;
+}
+.shape{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+    >svg {
+        width: 100%;
+        height: auto;
+        fill: var(--#{$prefix}body-bg);
+    }
+}
+
+// auth-pass-inputgroup
+
+.auth-pass-inputgroup{
+    input[type="text"] + .btn .ri-eye-fill{
+        &:before{
+            content: "\ecb6";
+            margin-left: -40px !important;
+        }
+    }
+}
+
+.particles-js-canvas-el{
+    position: relative;
+}
+
+// signin card title
+
+.signin-other-title{
+    position: relative;
+    &:after{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        right: 0;
+        border-top: 1px dashed var(--#{$prefix}border-color);
+        top: 10px;
+    }
+
+    .title{
+        display: inline-block;
+        position: relative;
+        z-index: 9;
+        background-color: var(--#{$prefix}secondary-bg);
+        padding: 2px 16px;
+    }
+}
+
+// Auth cover
+
+.auth-bg-cover{
+    background: $auth-bg-cover;
+
+    > .bg-overlay{
+        background-image: url("../../images/cover-pattern.png");
+        background-position: center;
+        background-size: cover;
+        opacity: 1;
+        background-color: transparent;
+    }
+
+    .footer{
+        color: rgba($white, .5);
+    }
+}
+
+//passowrd validations 
+#password-contain {
+    display: none;
+
+    p {
+        padding-left: 13px;
+
+        &.valid {
+            color: var(--#{$prefix}success);
+
+            &::before {
+                position: relative;
+                left: -8px;
+                content: "✔";
+            }
+        }
+
+        &.invalid {
+            color: var(--#{$prefix}danger);
+
+            &::before {
+                position: relative;
+                left: -8px;
+                content: "✖";
+            }
+        }
+    }
+}
+
+.auth-logo h4{
+    color: aliceblue;
+}
+.eyeBtn{
+    margin-left: 10px !important;
+}

@@ -1,0 +1,19 @@
+.step-arrow-nav {
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+.nav-pills.custom-nav {
+    display: flex; /* Use flexbox to align items in a single row */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: space-between; /* Distribute space evenly */
+}
+
+.nav-item {
+    /* flex: 1; Allow each tab to grow equally */
+    /* min-width: 150px; Set a minimum width for each tab */
+}
+@media (max-width: 768px) {
+    .nav-item {
+        /* min-width: 120px; Adjust minimum width for smaller screens/ */
+    }
+}

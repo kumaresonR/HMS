@@ -1,0 +1,7 @@
+.vertical-navs-step .nav .nav-link {
+    text-align: left;
+    background-color: rgba(var(--vz-light-rgb), 0.4);
+    border: 1px solid var(--vz-border-color);
+    color: var(--vz-body-color);
+    text-wrap: nowrap !important;
+}

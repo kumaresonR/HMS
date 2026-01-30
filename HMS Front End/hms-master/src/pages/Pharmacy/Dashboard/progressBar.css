@@ -1,0 +1,13 @@
+.custom-progress {
+    height: 20px;
+    border-radius: 10px;
+  }
+  .animated-progress {
+    animation: progress-animation 1s ease-in-out;
+  }
+  
+  @keyframes progress-animation {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+  

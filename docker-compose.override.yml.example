@@ -1,0 +1,32 @@
+# Docker Compose Override Example
+# Copy this file to docker-compose.override.yml to customize settings
+# This file is automatically loaded by docker-compose
+
+version: '3.8'
+
+services:
+  postgres:
+    # Uncomment to change PostgreSQL port
+    # ports:
+    #   - "5433:5432"  # Use port 5433 on host instead of 5432
+    
+    # Uncomment to change PostgreSQL password
+    # environment:
+    #   POSTGRES_PASSWORD: YourSecurePassword123
+    
+    # Uncomment to persist data to a specific location
+    # volumes:
+    #   - ./postgres-data:/var/lib/postgresql/data
+
+  redis:
+    # Uncomment to change Redis port
+    # ports:
+    #   - "6380:6379"  # Use port 6380 on host instead of 6379
+    
+    # Uncomment to add Redis password
+    # command: redis-server --requirepass YourRedisPassword123
+    
+    # Uncomment to persist data to a specific location
+    # volumes:
+    #   - ./redis-data:/data
+

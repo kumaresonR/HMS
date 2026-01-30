@@ -1,0 +1,15 @@
+.css-3dcfwk-MuiBarElement-root {
+    stroke: none;
+    fill: #ffcf00 !important;
+    -webkit-transition: opacity 0.2s ease-in, fill 0.2s ease-in;
+    transition: opacity 0.2s ease-in, fill 0.2s ease-in;
+    opacity: 1;
+}
+.css-1qdzy9k-MuiBarElement-root {
+    stroke: none;
+    fill: #4ab58e;
+    -webkit-transition: opacity 0.2s ease-in, fill 0.2s ease-in;
+    transition: opacity 0.2s ease-in, fill 0.2s ease-in;
+    opacity: 1;
+    border-radius: 20px !important;
+}

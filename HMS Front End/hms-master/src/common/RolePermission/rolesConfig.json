@@ -1,0 +1,43 @@
+{
+    "dashboard": ["ADMIN", "USER"],
+    "create-patient": ["ADMIN"],
+    "edit-patient": ["ADMIN"],
+    "patient-datatable": ["ADMIN", "DOCTOR"],
+    "leaveApproval": ["HR"],
+    "add-leave-approval": ["HR"],
+    "generatePayroll": ["HR", "ADMIN"],
+    "addLeave": ["EMPLOYEE"],
+    "myLeave": ["EMPLOYEE"],
+    "create-appointment": ["DOCTOR", "RECEPTIONIST"],
+    "edit-appointment": ["DOCTOR"],
+    "appointment-datatable": ["ADMIN", "DOCTOR", "RECEPTIONIST"],
+    "available-time-slot": ["DOCTOR"],
+    "available-time-sheet": ["DOCTOR"],
+    "bed-group-datatable": ["ADMIN", "STAFF"],
+    "add-attendance": ["HR"],
+    "view-scheduled-appointment": ["ADMIN", "HR"],
+    "inPatient-datatable": ["DOCTOR"],
+    "ipd-discharged-patient-list": ["RECEPTIONIST"],
+
+    
+    "staff-attendance": ["HR", "ADMIN"],
+    "payroll-reports": ["HR", "ADMIN"],
+    "patient-records": ["ADMIN", "DOCTOR", "RECEPTIONIST"],
+    "medical-reports": ["DOCTOR"],
+    "hospital-inventory": ["ADMIN", "STAFF"],
+    "billing": ["ADMIN", "RECEPTIONIST"],
+    "pharmacy-management": ["ADMIN", "PHARMACIST"],
+    "insurance-claims": ["ADMIN", "HR"],
+    "laboratory-reports": ["ADMIN", "LAB_TECH"],
+    "admission-records": ["ADMIN", "NURSE"],
+    "nurse-dashboard": ["NURSE"],
+    "ambulance-services": ["ADMIN", "STAFF"],
+    "appointment-history": ["ADMIN", "DOCTOR", "USER"],
+    "feedback-management": ["ADMIN", "HR"],
+    "notifications": ["ADMIN", "USER", "HR", "DOCTOR", "RECEPTIONIST", "EMPLOYEE"],
+    "settings": ["ADMIN"],
+    "profile": ["ADMIN", "USER", "HR", "DOCTOR", "RECEPTIONIST", "EMPLOYEE"],
+    "reports": ["ADMIN", "HR", "DOCTOR"]
+  }
+  
+  

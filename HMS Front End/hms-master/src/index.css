@@ -1,0 +1,145 @@
+.bg-purple-subtle {
+    background-color: #edebfe !important;
+}
+
+.text-purple {
+    color: rebeccapurple !important;
+}
+
+.text-red {
+    color: #af4444 !important;
+
+}
+
+.bg-red-subtle {
+    background-color: #fde8e8 !important;
+}
+
+.text-indigo {
+    color: #726dba;
+}
+
+.bg-indigo-subtle {
+    background-color: #e5edff !important;
+
+}
+
+.text-pink {
+    color: #a32c5d !important;
+}
+
+.bg-pink-subtle {
+    background-color: #fce8f3 !important;
+}
+
+.nav-item.active .nav-link {
+    background-color: #f0f0f0;
+    color: var(--vz-vertical-menu-bg) !important;
+    border-radius: 5px 20px 20px 5px;
+    margin-right: 10px;
+    padding: 0px;
+}
+
+
+table thead tr {
+    background-color: #f3f6f9;
+}
+
+.text-primary {
+    font-weight: 500;
+}
+
+
+/* .no-odd-row-bg tr {
+    background-color: white !important;
+} */
+
+.no-odd-row-bg td {
+
+    border: none !important;
+}
+
+table tr td,
+th {
+    color: black;
+    padding: 10px 15px !important;
+    text-align: left !important;
+    border: 0.5px solid #e3e3e3 !important;
+}
+
+table {
+    padding: 10px;
+
+}
+
+.profileDetailTable td {
+    padding: 10px;
+    background-color: white !important;
+}
+
+td {
+    text-wrap: wrap !important;
+}
+
+tr th {
+    border: 0.5px solid #e3e3e3 !important;
+}
+
+.input-group-text.searchBtn {
+    background-color: #36c1ae;
+    color: white;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400..700&display=swap');
+
+
+
+.staffCard .card {
+    margin-bottom: 1.5rem !important;
+    box-shadow: 1px 1px 10px rgb(0 0 0 / 15%) !important;
+    padding: 18px !important;
+}
+
+
+
+.btn-secondary {
+    background-color: rgb(45.05, 101.15, 204.85) !important;
+}
+
+.btn-soft-danger {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #dc3545;
+    /* border: 1px solid #dc3545; */
+}
+
+.btn-soft-danger:disabled,
+.btn-soft-danger[disabled] {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    /* Same as normal */
+    color: #dc3545 !important;
+    /* Keep text red */
+    /* border: 1px solid #dc3545 !important; Maintain border */
+    opacity: 1 !important;
+    /* Remove default "graying out" */
+    pointer-events: none;
+    /* Ensures button remains unclickable */
+}
+
+.btn.disabled,
+.btn:disabled,
+fieldset:disabled .btn {
+    border: none !important;
+}
+
+
+table.noBorderTable tr td,
+table.noBorderTable tr th {
+    border: none !important;
+    padding: 10px !important;
+}
+
+
+.modal-title .btn.btn-secondary {
+    background-color: transparent !important;
+ 
+}

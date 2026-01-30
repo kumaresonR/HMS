@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400..700&display=swap');
+
+.DashBoardGreetingCard {
+    background-color: #f4f6ff;
+    font-family: "Monda", sans-serif !important;
+    border-radius: 40px;
+    box-shadow: 1px 1px 5px #d0d8ff;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    height: fit-content;
+    width: fit-content;
+    padding: 35px;
+}
+[data-bs-theme="dark"] {
+    .DashBoardGreetingCard {
+        background-color: #1a1d21;
+    }
+
+    .upcoming-scheduled .flatpickr-innerContainer {
+        background: rgba(var(--vz-light-rgb), var(--vz-bg-opacity)) !important;
+    }
+
+    .profileDetailTable .custom-bg-class{
+        background-color: #1a1d21 !important;
+    }
+
+    .job-portal-container, .job-portal-container-1 {
+        background: #3d3d3d;
+    }
+
+    .job-portal-container .card-header span:last-child {
+        color: aliceblue;
+    }
+}
+
+.imgGreeting {
+    position: relative;
+}
+/* .page-content{
+    background-color: #f8f8f8 !important;
+} */
+
+.DashBoardGreetingCard h2 {
+    font-family: "Monda", sans-serif !important;
+    font-size: 30px;
+    margin-bottom: 13px;
+}
+
+.doctorName {
+    color: #3E36B0;
+}
+.doctorBtmCont{
+    line-height: 30px !important;
+    color: #6d6d6d;
+}
+.quotes {
+    color: #405189;
+}
+
+
+

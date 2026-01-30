@@ -1,0 +1,22 @@
+.badgeRed {
+    font-size: 16px !important;
+    color: #f06548 !important;
+    background-color: #FDE8E4;
+    text-wrap: nowrap;
+    font-size: 12px !important;
+
+}
+
+.badgeGreen {
+    font-size: 12px !important;
+    background-color: #DAF4F0;
+    text-wrap: nowrap;
+    color: #0AB39C !important;
+}
+
+.defaultBadge {
+    font-size: 12px !important;
+    background-color: #ebebeb;
+    text-wrap: nowrap;
+    color: #171a1a !important;
+}

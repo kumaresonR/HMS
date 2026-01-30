@@ -1,0 +1,15 @@
+.MuiChartsLegend-root{
+    display: none !important;
+}
+
+.pie-chart-container {
+    width: 250px;  /* Set the width of the chart */
+    height: 250px; /* Set the height of the chart */
+    display: flex;
+    justify-content: center;
+    margin: 0PX;
+    align-items: center;
+  }
+  
+  
+  

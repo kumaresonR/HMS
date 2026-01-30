@@ -1,0 +1,10 @@
+.table-cell-padding td,
+.table-cell-padding th {
+    padding: 20px;
+    /* Adjust padding as needed */
+}
+
+td,
+thead {
+    text-wrap: nowrap;
+}

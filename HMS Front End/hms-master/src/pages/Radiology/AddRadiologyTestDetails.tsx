@@ -1,0 +1,571 @@
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useEffect, useState } from 'react'
+import { Button, Col, Container, Form, FormGroup, Input, Row } from 'reactstrap'
+import ErrorHandler from '../../helpers/ErrorHandler'
+import { toast } from 'react-toastify'
+import { categoryData, categoryNameData, testParameterdata } from '../../common/data/FakeData'
+import BillingApiService from '../../helpers/services/billing/billing-api-service'
+import SetupApiService from '../../helpers/services/setup/setup-api-service'
+
+const AddRadiologyTestDetails = (props: any) => {
+    const billingApiService: BillingApiService = new BillingApiService();
+    const setupApiService: SetupApiService = new SetupApiService();
+
+    const [testName, setTestName] = useState('');
+    const [testNameValidationError, setTestNameValidationError] = useState(false);
+    const [shortName, setShortName] = useState('');
+    const [shortNameValidationError, setShortNameValidationError] = useState(false);
+    const [testType, setTestType] = useState('');
+    const [filteredChargeName, setFilteredChargeName] = useState([]);
+    const [categoryData, setCategoryData] = useState([]);
+    const [categoryName, setCategoryName] = useState('');
+    const [categoryNameValidationError, setCategoryNameValidationError] = useState(false);
+    const [subCategory, setSubCategory] = useState('');
+    const [reportDaysValidationError, setReportDaysValidationError] = useState(false);
+    const [reportDays, setReportDays] = useState('');
+    const [chargeCategoryData, setChargeCategoryData] = useState([]);
+    const [chargeCategoryValidationError, setChargeCategoryValidationError] = useState(false);
+    const [chargeCategory, setChargeCategory] = useState('');
+    const [chargeNameValidationError, setChargeNameValidationError] = useState(false);
+    const [chargeName, setChargeName] = useState('');
+    const [tax, setTax] = useState<any>('');
+    const [standardChargeValidationError, setStandardChargeValidationError] = useState(false);
+    const [standardCharge, setStandardCharge] = useState<any>('');
+    const [amountValidationError, setAmountValidationError] = useState(false);
+    const [amount, setAmount] = useState<any>('');
+    const [testParameterNameValidationError, setTestParameterNameValidationError] = useState(false);
+    const [normalRangeValidationError, setNormalRangeValidationError] = useState(false);
+    const [unitValidationError, setUnitValidationError] = useState(false);
+    const [testData, setTestData] = useState<any[]>([]);
+    const [testParameterdata, setTestParameterData] = useState<any[]>([]);
+
+    const handleChargeCategory = (value: any) => {
+        setChargeCategory(value);
+
+        const selectedCharge: any = chargeCategoryData.find((item: any) => item?.chargeCategory?.name === value);
+
+        if (selectedCharge) {
+            setChargeName(selectedCharge.chargeName);
+            setStandardCharge(selectedCharge.standardCharge);
+            setTax(selectedCharge.taxPercentage);
+            setAmount(selectedCharge.standardCharge);
+            setChargeNameValidationError(false);
+            setStandardChargeValidationError(false);
+            setAmountValidationError(false);
+        } else {
+            setChargeName('');
+            setStandardCharge(0);
+            setAmount(0);
+            setTax(0);
+        }
+        setChargeCategoryValidationError(false);
+    };
+
+    const handleChargeNameChange = (value: any) => {
+        setChargeName(value);
+        setChargeNameValidationError(false);
+    }
+
+    // const handleChargeCategory = (value: any) => {
+    //     setChargeCategory(value);
+    //     setChargeCategoryValidationError(false)
+    //     setChargeName('');
+    //     setTax('');
+    //     setStandardCharge('');
+    //     setAmount('');
+
+    //     const selectedCategoryNames: any = categoryNameData
+    //         .filter(category => category.category === value)
+    //         .map(category => category.name);
+    //     setFilteredChargeName(selectedCategoryNames);
+    // };
+
+    // const handleChargeName = (value: any) => {
+    //     setChargeName(value);
+    //     setChargeNameValidationError(false)
+    //     const selectedData: any = categoryNameData.find((data: any) => data.name === value);
+
+    //     if (selectedData) {
+    //         setTax(selectedData.tax);
+    //         setStandardCharge(selectedData.standardCharge);
+    //         setAmount(selectedData.amount);
+    //     }
+    // };
+
+    const addNew = () => {
+        setTestData([...testData, { parameterName: '', normalRange: '', unit: '' }]);
+    };
+
+    const handleInputChange = (index: number, field: string, value: string) => {
+        const newTest = [...testData];
+        newTest[index] = {
+            ...newTest[index],
+            [field]: value,
+        };
+
+        // Automatically update normalRange and unit based on selected parameterName
+        if (field === 'parameterName') {
+            // const selectedParameter: any = testParameterdata.find(item => item.name === value);
+            // if (selectedParameter) {
+            //     newTest[index].normalRange = selectedParameter.referanceRange;
+            //     newTest[index].unit = selectedParameter.unit;
+            // }
+            const selectedParameter: any = testParameterdata.find((item: any) => item.parameterName === value);
+            if (selectedParameter) {
+                newTest[index].normalRange = `${selectedParameter.referenceRangeFrom} to ${selectedParameter.referenceRangeTo}`;
+                newTest[index].unit = selectedParameter.unit;
+            }
+            setTestParameterNameValidationError(false);
+        } else if (field === 'normalRange') {
+            setNormalRangeValidationError(false);
+        } else if (field === 'unit') {
+            setUnitValidationError(false);
+        }
+
+        setTestData(newTest);
+    };
+
+    const removeTestData = (index: any) => {
+        const netTest = [...testData];
+        netTest.splice(index, 1);
+        setTestData(netTest);
+    };
+
+    const handleTestNameChange = (value: any) => {
+        setTestName(value);
+        setTestNameValidationError(false);
+    }
+
+    const handleShortNameChange = (value: any) => {
+        setShortName(value);
+        setShortNameValidationError(false);
+    }
+
+    const handleCateroryName = (value: any) => {
+        setCategoryName(value)
+        setCategoryNameValidationError(false)
+    }
+
+    const handleSubCategory = (value: any) => {
+        setSubCategory(value)
+    }
+
+    const handleReportDays = (value: any) => {
+        setReportDaysValidationError(false)
+        setReportDays(value)
+    }
+
+    const handleTax = (value: any) => {
+        setTax(value)
+
+    }
+
+    const handleStandardChargeChange = (value: any) => {
+        setStandardCharge(value)
+        setStandardChargeValidationError(false)
+    }
+
+    const handleAmountChange = (value: any) => {
+        setAmount(value)
+        setAmountValidationError(false)
+    }
+
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        if (validateForm()) {
+            doCreateTestData();
+        }
+    }
+
+    const validateForm = () => {
+        let isFormValid = true;
+
+        if (!chargeName) {
+            setChargeNameValidationError(true);
+            isFormValid = false;
+        }
+
+        if (!testName) {
+            setTestNameValidationError(true);
+            isFormValid = false;
+        }
+        if (!shortName) {
+            setShortNameValidationError(true);
+            isFormValid = false;
+        }
+        if (!categoryName) {
+            setCategoryNameValidationError(true);
+            isFormValid = false;
+        }
+
+        if (!reportDays) {
+            setReportDaysValidationError(true);
+            isFormValid = false;
+        }
+        if (!chargeCategory) {
+            setChargeCategoryValidationError(true);
+            isFormValid = false;
+        }
+        if (!standardCharge) {
+            setStandardChargeValidationError(true);
+            isFormValid = false;
+        }
+
+        if (!amount) {
+            setAmountValidationError(true);
+            isFormValid = false;
+        }
+
+        const testDataErrors = testData.map((test) => {
+            const errors = {
+                parameterName: !test.parameterName,
+                normalRange: !test.normalRange,
+                unit: !test.unit,
+            };
+
+            isFormValid = isFormValid && !Object.values(errors).includes(true);
+            return errors;
+        });
+
+        // Set validation errors for all vitals
+        setTestParameterNameValidationError(testDataErrors.some(error => error.parameterName));
+        setNormalRangeValidationError(testDataErrors.some(error => error.normalRange));
+        setUnitValidationError(testDataErrors.some(error => error.unit));
+
+        return isFormValid;
+    };
+
+    const doCreateTestData = async () => {
+        try {
+            let payload: any = {
+                testName: testName,
+                shortName: shortName,
+                testType: testType,
+                categoryName: categoryName,
+                subCategory: subCategory,
+                reportDays: reportDays,
+                chargeCategory: chargeCategory,
+                chargeName: chargeName,
+                taxPercentage: tax,
+                standardCharge: standardCharge,
+                amount: amount,
+                testParameters: testData
+            };
+            await billingApiService.createRadiologyTest(payload);
+            toast.success('Radiology Test Created Successfully', { containerId: 'TR' });
+            props.handleClose();
+        } catch (error: any) {
+            console.log("Radiology Test Created Failed", error);
+            return ErrorHandler(error)
+        }
+    }
+
+    const getAllPathologyCategory = async () => {
+        try {
+            let result = await setupApiService.getAllRaiologyCategoryTm();
+            setCategoryData(result);
+        } catch (error: any) {
+            return ErrorHandler(error)
+        }
+    }
+
+    const getAllPathologyParameter = async () => {
+        try {
+            let result = await setupApiService.getAllRaiologyParameterTm();
+            setTestParameterData(result);
+        } catch (error: any) {
+            return ErrorHandler(error)
+        }
+    }
+
+    const getAllCategory = async () => {
+        try {
+            let result = await setupApiService.getAllChargeCategory();
+            setChargeCategoryData(result);
+        } catch (error: any) {
+            return ErrorHandler(error)
+        }
+    }
+
+    useEffect(() => {
+        addNew();
+        getAllPathologyCategory();
+        getAllPathologyParameter();
+        getAllCategory();
+    }, []);
+
+    return (
+        <React.Fragment>
+            <Container fluid>
+                <Row>
+                    <Col>
+                        <Form onSubmit={handleSubmit}>
+                            <Row  >
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Test Name <span className="text-danger">*</span></label>
+                                        <Input
+                                            id="testName"
+                                            name="testName"
+                                            type="text"
+                                            value={testName}
+                                            className={`${testNameValidationError ? 'is-invalid' : ''}`}
+                                            onChange={e => handleTestNameChange(e.target.value)}
+                                        />
+                                        {testNameValidationError && <div className="invalid-feedback">Test Name Required.</div>}
+                                    </FormGroup>
+                                </Col>
+
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Short Name<span className="text-danger">*</span></label>
+                                        <Input
+                                            id="shortName"
+                                            name="shortName"
+                                            type="text"
+                                            value={shortName}
+                                            className={`${shortNameValidationError ? 'is-invalid' : ''}`}
+                                            onChange={e => handleShortNameChange(e.target.value)}
+                                        />
+                                        {shortNameValidationError && <div className="invalid-feedback">Short Name Required.</div>}
+                                    </FormGroup>
+                                </Col>
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Test Type</label>
+                                        <Input
+                                            id="testType"
+                                            name="testType"
+                                            type="text"
+                                            value={testType}
+                                            onChange={e => setTestType(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </Col>
+
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Category Name <span className="text-danger">*</span></label>
+                                        <select
+                                            className={`form-control ${categoryNameValidationError ? 'is-invalid' : ''}`}
+                                            value={categoryName}
+                                            onChange={(e) => handleCateroryName(e.target.value)}
+                                        >
+                                            <option value="">--Select Category Name--</option>
+                                            {/* {categoryData.map((data, idx) => (
+                                                <option key={idx} value={data.name}>{data.name}</option>
+                                            ))} */}
+                                            {categoryData.map((data: any, idx: any) => (
+                                                <option key={idx} value={data.categoryName}>{data.categoryName}</option>
+                                            ))}
+                                        </select>
+                                        {categoryNameValidationError && <div className="invalid-feedback">Category Name Required.</div>}
+                                    </FormGroup>
+                                </Col>
+
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Sub Category</label>
+                                        <Input
+                                            id="subCategory"
+                                            name="subCategory"
+                                            type="text"
+                                            value={subCategory}
+                                            onChange={e => handleSubCategory(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Report Days <span className="text-danger">*</span></label>
+                                        <Input
+                                            id="reportDays"
+                                            name="reportDays"
+                                            type="number"
+                                            min="0"
+                                            value={reportDays}
+                                            className={`form-control ${reportDaysValidationError ? 'is-invalid' : ''}`}
+                                            onChange={e => handleReportDays(e.target.value)}
+                                        />
+                                        {reportDaysValidationError && <div className="invalid-feedback">Report Days Required.</div>}
+                                    </FormGroup>
+                                </Col>
+
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Charge Category<span className="text-danger">*</span></label>
+                                        <Input
+                                            type="select"
+                                            id="charge_category"
+                                            name="charge_category"
+                                            className="form-control"
+                                            value={chargeCategory}
+                                            onChange={e => handleChargeCategory(e.target.value)}
+                                            invalid={!!chargeCategoryValidationError}
+                                        >
+                                            <option value="">Select</option>
+                                            {chargeCategoryData?.map((item: any, idx: any) => (
+                                                <option key={idx} value={item?.chargeCategory?.name}>{item?.chargeCategory?.name}</option>
+                                            ))}
+                                        </Input>
+                                        {chargeCategoryValidationError && <div className="invalid-feedback">Charge Category Required.</div>}
+                                    </FormGroup>
+                                </Col>
+
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Charge Name<span className="text-danger">*</span></label>
+                                        <Input
+                                            type="text"
+                                            id="charge_name"
+                                            name="charge_name"
+                                            className="form-control"
+                                            value={chargeName}
+                                            onChange={e => handleChargeNameChange(e.target.value)}
+                                            invalid={!!chargeNameValidationError}
+                                            readOnly
+                                        />
+                                        {chargeNameValidationError && <div className="invalid-feedback">Charge Name Required.</div>}
+                                    </FormGroup>
+                                </Col>
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Tax(%) <span className="text-danger">*</span></label>
+                                        <Input
+                                            id="tax"
+                                            name="tax"
+                                            type="text"
+                                            value={tax}
+                                            readOnly
+                                            onChange={e => handleTax(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </Col>
+
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Standard Charge(₹)<span className="text-danger">*</span></label>
+                                        <Input
+                                            id="standardCharge"
+                                            name="standardCharge"
+                                            type="text"
+                                            readOnly
+                                            value={standardCharge}
+                                            className={`${standardChargeValidationError ? 'is-invalid' : ''}`}
+                                            onChange={e => handleStandardChargeChange(e.target.value)}
+                                        />
+                                        {standardChargeValidationError && <div className="invalid-feedback">Standard Charge Required.</div>}
+                                    </FormGroup>
+                                </Col>
+
+                                <Col md={4}>
+                                    <FormGroup>
+                                        <label className="text-start mb-2">Amount(₹)<span className="text-danger">*</span></label>
+                                        <Input
+                                            id="amount"
+                                            name="amount"
+                                            type="text"
+                                            readOnly
+                                            value={amount}
+                                            className={`readonly form-control ${amountValidationError ? 'is-invalid' : ''}`}
+                                            onChange={e => handleAmountChange(e.target.value)}
+                                        />
+                                        {amountValidationError && <div className="invalid-feedback">Amount Required.</div>}
+                                    </FormGroup>
+                                </Col>
+                                <hr />
+                            </Row>
+
+
+                            <div className="row mb-2 mt-4">
+                                <div className="col-md-6"><h4>Add Test Details</h4></div>
+                                <div className="col-md-6 text-end">    <Button color="primary" onClick={addNew}>
+                                    Add
+                                </Button></div>
+                            </div>
+                            {testData.map((row, index) => (
+                                <Row key={index} className='align-items-center'>
+                                    <Col>
+                                        <FormGroup>
+                                            <label className="text-start mb-2">Test Parameter Name<span className="text-danger">*</span></label>
+                                            <select
+                                                className={`form-control ${testParameterNameValidationError ? 'is-invalid' : ''}`}
+                                                value={row.parameterName}
+                                                onChange={(e) => handleInputChange(index, 'parameterName', e.target.value)}
+                                            >
+                                                <option value="">--Select Test Parameter Name--</option>
+                                                {/* {testParameterdata.map((data, idx) => (
+                                                    <option key={idx} value={data.name}>{data.name}</option>
+                                                ))} */}
+                                                {testParameterdata.map((data: any, idx: any) => (
+                                                    <option key={idx} value={data.parameterName}>{data.parameterName}</option>
+                                                ))}
+                                            </select>
+                                            {testParameterNameValidationError && <div className="invalid-feedback">Test Parameter Name Required.</div>}
+                                        </FormGroup>
+                                    </Col>
+                                    <Col>
+                                        <FormGroup>
+                                            <label className="text-start mb-2">Reference Range<span className="text-danger">*</span></label>
+                                            <Input
+                                                id="normalRange"
+                                                name="normalRange"
+                                                type="text"
+                                                value={row.normalRange}
+                                                readOnly
+                                                className={`${normalRangeValidationError ? 'is-invalid' : ''}`}
+                                                onChange={(e) => handleInputChange(index, 'normalRange', e.target.value)}
+                                            />
+                                            {normalRangeValidationError && <div className="invalid-feedback">Reference range Required.</div>}
+                                        </FormGroup>
+                                    </Col>
+                                    <Col>
+                                        <FormGroup>
+                                            <label className="text-start mb-2">Unit<span className="text-danger">*</span></label>
+                                            <Input
+                                                id="unit"
+                                                name="unit"
+                                                type="text"
+                                                readOnly
+                                                value={row.unit}
+                                                className={`readonly form-control ${unitValidationError ? 'is-invalid' : ''}`}
+                                                onChange={(e) => handleInputChange(index, 'unit', e.target.value)}
+                                            />
+                                            {unitValidationError && <div className="invalid-feedback">Unit Required.</div>}
+                                        </FormGroup>
+                                    </Col>
+
+                                    {index !== 0 && (
+                                        <Col xs="auto pt-2">
+                                            <button onClick={() => removeTestData(index)} className='btn btn-soft-danger'>
+                                                <FontAwesomeIcon
+                                                    className="mx-2"
+                                                    icon={faXmark}
+                                                />
+                                            </button>
+                                        </Col>
+                                    )}
+
+                                </Row>
+
+                            ))}
+
+
+                            <hr />
+                            <Row>
+                                <Col className="text-end">
+                                    <Button
+                                        // size="sm"
+                                        color="primary"
+                                        className="btn btn-primary ms-3" type="submit">Save</Button>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
+        </React.Fragment>
+    );
+};
+export default AddRadiologyTestDetails
