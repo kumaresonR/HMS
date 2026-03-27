@@ -1,0 +1,409 @@
+openapi: 3.0.3
+info:
+  title: IPD Management Services API
+  description: API documentation for managing IPD admissions, billing, and treatments.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8084
+    description: Local server
+
+paths:
+  /ipd-admissions:
+    get:
+      summary: Get all IPD admissions
+      operationId: getAllIPDAdmissions
+      tags:
+        - IPD Admissions
+      responses:
+        '200':
+          description: List of IPD admissions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IPDAdmissionRoomDto'
+    post:
+      summary: Create a new IPD admission
+      operationId: createIPDAdmission
+      tags:
+        - IPD Admissions
+      requestBody:
+        description: IPD admission data to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPDAdmissionRoomDto'
+        required: true
+      responses:
+        '201':
+          description: IPD admission created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDAdmissionRoomDto'
+
+  /ipd-admissions/{id}:
+    get:
+      summary: Get IPD admission by ID
+      operationId: getIPDAdmissionById
+      tags:
+        - IPD Admissions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: IPD admission details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDAdmissionRoomDto'
+        '404':
+          description: IPD admission not found
+    put:
+      summary: Update an IPD admission
+      operationId: updateIPDAdmission
+      tags:
+        - IPD Admissions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated IPD admission data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPDAdmissionRoomDto'
+        required: true
+      responses:
+        '200':
+          description: IPD admission updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDAdmissionRoomDto'
+        '404':
+          description: IPD admission not found
+    delete:
+      summary: Delete IPD admission
+      operationId: deleteIPDAdmission
+      tags:
+        - IPD Admissions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: IPD admission deleted successfully
+        '404':
+          description: IPD admission not found
+
+  /ipd-billing:
+    get:
+      summary: Get all IPD billing records
+      operationId: getAllIPDBilling
+      tags:
+        - IPD Billing
+      responses:
+        '200':
+          description: List of IPD billing records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IPDBillingDto'
+    post:
+      summary: Create a new IPD billing record
+      operationId: createIPDBilling
+      tags:
+        - IPD Billing
+      requestBody:
+        description: IPD billing data to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPDBillingDto'
+        required: true
+      responses:
+        '201':
+          description: IPD billing created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDBillingDto'
+
+  /ipd-billing/{id}:
+    get:
+      summary: Get IPD billing record by ID
+      operationId: getIPDBillingById
+      tags:
+        - IPD Billing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: IPD billing details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDBillingDto'
+        '404':
+          description: IPD billing not found
+    put:
+      summary: Update an IPD billing record
+      operationId: updateIPDBilling
+      tags:
+        - IPD Billing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated IPD billing data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPDBillingDto'
+        required: true
+      responses:
+        '200':
+          description: IPD billing updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDBillingDto'
+        '404':
+          description: IPD billing not found
+    delete:
+      summary: Delete IPD billing record
+      operationId: deleteIPDBilling
+      tags:
+        - IPD Billing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: IPD billing deleted successfully
+        '404':
+          description: IPD billing not found
+
+  /ipd-treatments:
+    get:
+      summary: Get all IPD treatment records
+      operationId: getAllIPDTreatments
+      tags:
+        - IPD Treatments
+      responses:
+        '200':
+          description: List of IPD treatment records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IPDTreatmentsDto'
+    post:
+      summary: Create a new IPD treatment record
+      operationId: createIPDTreatment
+      tags:
+        - IPD Treatments
+      requestBody:
+        description: IPD treatment data to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPDTreatmentsDto'
+        required: true
+      responses:
+        '201':
+          description: IPD treatment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDTreatmentsDto'
+
+  /ipd-treatments/{id}:
+    get:
+      summary: Get IPD treatment record by ID
+      operationId: getIPDTreatmentById
+      tags:
+        - IPD Treatments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: IPD treatment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDTreatmentsDto'
+        '404':
+          description: IPD treatment not found
+    put:
+      summary: Update an IPD treatment record
+      operationId: updateIPDTreatment
+      tags:
+        - IPD Treatments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated IPD treatment data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPDTreatmentsDto'
+        required: true
+      responses:
+        '200':
+          description: IPD treatment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDTreatmentsDto'
+        '404':
+          description: IPD treatment not found
+    delete:
+      summary: Delete IPD treatment record
+      operationId: deleteIPDTreatment
+      tags:
+        - IPD Treatments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: IPD treatment deleted successfully
+        '404':
+          description: IPD treatment not found
+
+components:
+  schemas:
+    IPDAdmissionRoomDto:
+      type: object
+      properties:
+        admissionId:
+          type: integer
+        patientId:
+          type: integer
+        doctorId:
+          type: integer
+        admissionDate:
+          type: string
+          format: date-time
+        admissionTime:
+          type: string
+          format: time
+        roomId:
+          type: integer
+        reasonForAdmission:
+          type: string
+        status:
+          type: string
+        dischargeDate:
+          type: string
+          format: date-time
+        dischargeSummary:
+          type: string
+        height:
+          type: string
+        weight:
+          type: string
+        pulse:
+          type: string
+        temperature:
+          type: string
+        respiration:
+          type: string
+        bp:
+          type: string
+        symptoms:
+          type: string
+        knownAllergies:
+          type: string
+        roomNumber:
+          type: string
+        roomType:
+          type: string
+        roomStatus:
+          type: string
+        ratePerDay:
+          type: number
+          format: float
+
+    IPDBillingDto:
+      type: object
+      properties:
+        billingId:
+          type: integer
+        patientId:
+          type: integer
+        billingDate:
+          type: string
+          format: date-time
+        totalAmount:
+          type: number
+          format: double
+        paymentStatus:
+          type: string
+        paymentMethod:
+          type: string
+
+    IPDTreatmentsDto:
+      type: object
+      properties:
+        treatmentId:
+          type: integer
+        admissionId:
+          type: integer
+        doctorId:
+          type: integer
+        treatmentDate:
+          type: string
+          format: date-time
+        treatmentType:
+          type: string
+        description:
+          type: string
+        notes:
+          type: string

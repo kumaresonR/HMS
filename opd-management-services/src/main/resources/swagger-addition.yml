@@ -1,0 +1,404 @@
+openapi: 3.0.3
+info:
+  title: OPD Management Services API
+  description: API documentation for managing OPD services including appointments, billing, queue, and treatments.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8085
+    description: Local server
+
+paths:
+  /opd-management:
+    get:
+      summary: Get all OPD Management records
+      operationId: getAllOPDManagement
+      tags:
+        - OPD Management
+      responses:
+        '200':
+          description: List of OPD Management records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OPDManagementDto'
+    post:
+      summary: Create a new OPD Management record
+      operationId: createOPDManagement
+      tags:
+        - OPD Management
+      requestBody:
+        description: OPD management data to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OPDManagementDto'
+        required: true
+      responses:
+        '201':
+          description: OPD Management created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OPDManagementDto'
+
+  /opd-management/{id}:
+    get:
+      summary: Get OPD Management record by ID
+      operationId: getOPDManagementById
+      tags:
+        - OPD Management
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OPD Management details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OPDManagementDto'
+        '404':
+          description: OPD Management not found
+    put:
+      summary: Update an OPD Management record
+      operationId: updateOPDManagement
+      tags:
+        - OPD Management
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated OPD Management data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OPDManagementDto'
+        required: true
+      responses:
+        '200':
+          description: OPD Management updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OPDManagementDto'
+        '404':
+          description: OPD Management not found
+    delete:
+      summary: Delete OPD Management record
+      operationId: deleteOPDManagement
+      tags:
+        - OPD Management
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: OPD Management deleted successfully
+        '404':
+          description: OPD Management not found
+
+  /opd-billing:
+    get:
+      summary: Get all OPD Billing records
+      operationId: getAllOPDBilling
+      tags:
+        - OPD Billing
+      responses:
+        '200':
+          description: List of OPD Billing records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OPDBillingDto'
+    post:
+      summary: Create a new OPD Billing record
+      operationId: createOPDBilling
+      tags:
+        - OPD Billing
+      requestBody:
+        description: OPD billing data to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OPDBillingDto'
+        required: true
+      responses:
+        '201':
+          description: OPD Billing created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OPDBillingDto'
+  /opd-billing/{id}:
+    get:
+      summary: Get OPD Billing record by ID
+      operationId: getOPDBillingById
+      tags:
+        - OPD Billing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OPD Billing record details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OPDBillingDto'
+        '404':
+          description: OPD Billing record not found
+    put:
+      summary: Update an OPD Billing record
+      operationId: updateOPDBilling
+      tags:
+        - OPD Billing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated OPD billing data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OPDBillingDto'
+        required: true
+      responses:
+        '200':
+          description: OPD Billing record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OPDBillingDto'
+        '404':
+          description: OPD Billing record not found
+    delete:
+      summary: Delete an OPD Billing record
+      operationId: deleteOPDBilling
+      tags:
+        - OPD Billing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: OPD Billing record deleted successfully
+        '404':
+          description: OPD Billing record not found
+
+  /opd-treatments:
+    get:
+      summary: Get all OPD Treatment records
+      operationId: getAllOPDTreatments
+      tags:
+        - OPD Treatments
+      responses:
+        '200':
+          description: List of OPD Treatment records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OPDTreatmentsDto'
+    post:
+      summary: Create a new OPD Treatment record
+      operationId: createOPDTreatment
+      tags:
+        - OPD Treatments
+      requestBody:
+        description: OPD treatment data to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OPDTreatmentsDto'
+        required: true
+      responses:
+        '201':
+          description: OPD Treatment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OPDTreatmentsDto'
+  /opd-treatments/{id}:
+    get:
+      summary: Get OPD Treatment record by ID
+      operationId: getOPDTreatmentById
+      tags:
+        - OPD Treatments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OPD Treatment record details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OPDTreatmentsDto'
+        '404':
+          description: OPD Treatment record not found
+    put:
+      summary: Update an OPD Treatment record
+      operationId: updateOPDTreatment
+      tags:
+        - OPD Treatments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated OPD treatment data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OPDTreatmentsDto'
+        required: true
+      responses:
+        '200':
+          description: OPD Treatment record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OPDTreatmentsDto'
+        '404':
+          description: OPD Treatment record not found
+    delete:
+      summary: Delete an OPD Treatment record
+      operationId: deleteOPDTreatment
+      tags:
+        - OPD Treatments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: OPD Treatment record deleted successfully
+        '404':
+          description: OPD Treatment record not found
+
+components:
+  schemas:
+    OPDManagementDto:
+      type: object
+      properties:
+        appointmentId:
+          type: integer
+          format: int64
+        patientId:
+          type: integer
+          format: int64
+        doctorId:
+          type: integer
+          format: int64
+        registrationFees:
+          type: number
+          format: double
+        paymentType:
+          type: string
+        appointmentDate:
+          type: string
+          format: date-time
+        appointmentTime:
+          type: string
+          format: time
+        reasonForVisit:
+          type: string
+        appointmentStatus:
+          type: string
+        queueId:
+          type: integer
+          format: int64
+        queueNumber:
+          type: integer
+        queueStatus:
+          type: string
+        queueStartTime:
+          type: string
+          format: date-time
+        queueEndTime:
+          type: string
+          format: date-time
+
+    OPDBillingDto:
+      type: object
+      properties:
+        opdBillingId:
+          type: integer
+          format: int64
+        appointmentId:
+          type: integer
+          format: int64
+        patientId:
+          type: integer
+          format: int64
+        billingDate:
+          type: string
+          format: date-time
+        totalAmount:
+          type: number
+          format: double
+        paymentStatus:
+          type: string
+        paymentMethod:
+          type: string
+
+    OPDTreatmentsDto:
+      type: object
+      properties:
+        opdTreatmentId:
+          type: integer
+          format: int64
+        appointmentId:
+          type: integer
+          format: int64
+        doctorId:
+          type: integer
+          format: int64
+        treatmentDate:
+          type: string
+          format: date-time
+        treatmentType:
+          type: string
+        description:
+          type: string
+        notes:
+          type: string

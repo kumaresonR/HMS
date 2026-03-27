@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .details {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to HMS, [[${firstName}]] [[${lastName}]]!</h1>
+<p>Your account has been successfully created. Below are your login credentials:</p>
+<div class="details">
+    <p><strong>Username:</strong> [[${username}]]</p>
+    <p><strong>Password:</strong> [[${password}]]</p>
+</div>
+<p>Please make sure to update your password after your first login.</p>
+<div class="footer">
+    <p>Best regards,<br>HMS Team</p>
+</div>
+</body>
+</html>

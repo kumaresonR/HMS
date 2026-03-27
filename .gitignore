@@ -1,18 +1,28 @@
-# =====================================================
-# HMS Project - Root .gitignore
-# =====================================================
+# Compiled class file
+*.class
 
-# =====================================================
-# Documentation Files (Markdown)
-# =====================================================
-# Ignore all markdown files except README.md
-*.md
-!README.md
-# Allow README.md files in root and subdirectories
+# Log file
+*.log
 
-# =====================================================
-# Java / Spring Boot / Maven
-# =====================================================
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
 # Maven
 target/
 pom.xml.tag
@@ -24,361 +34,30 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-# Compiled class files
-*.class
-
-# Log files
-*.log
-*.log.*
-hs_err_pid*
-replay_pid*
-
-# Package Files
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# Virtual machine crash logs
-hs_err_pid*
-
-# =====================================================
-# Node.js / React / Frontend
-# =====================================================
-# Dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
-
-# Testing
-coverage/
-*.lcov
-.nyc_output
-
-# Production builds
+# Gradle
+.gradle/
 build/
+
+# Node / JS
+node_modules/
+npm-debug.log
+yarn-error.log
 dist/
-*.tsbuildinfo
-
-# Environment variables
+build/
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env*.local
 
-# Parcel
-.cache
-.parcel-cache
-
-# Next.js
-.next/
-out/
-
-# Nuxt.js
-.nuxt
-dist
-
-# Gatsby
-.cache/
-public
-
-# =====================================================
-# IDE / Editor Files
-# =====================================================
-# IntelliJ IDEA
+# IDEs
 .idea/
 *.iml
-*.iws
-*.ipr
-out/
-
-# Eclipse
-.classpath
-.project
-.settings/
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.loadpath
-.recommenders
-
-# NetBeans
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-# VS Code
 .vscode/
-*.code-workspace
-
-# Visual Studio
-.vs/
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# Vim
 *.swp
-*.swo
-*~
-
-# Emacs
-*~
-\#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
-*.elc
-auto-save-list
-tramp
-.\#*
-
-# =====================================================
-# Operating System Files
-# =====================================================
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-._*
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-# Windows
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
-*.stackdump
-[Dd]esktop.ini
-$RECYCLE.BIN/
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-*.lnk
-
-# Linux
-*~
-.fuse_hidden*
-.directory
-.Trash-*
-.nfs*
-
-# =====================================================
-# Database Files
-# =====================================================
-# PostgreSQL
-*.sql.backup
-*.sql.bak
-*.dump
-pgdata/
-postgres-data/
-
-# Database connection strings (if stored in files)
-database-credentials.txt
-db-config.local.*
-
-# =====================================================
-# Docker
-# =====================================================
-# Docker volumes
-postgres_data/
-redis_data/
-docker-data/
-
-# Docker override files (may contain sensitive data)
-docker-compose.override.yml
-
-# =====================================================
-# Security / Certificates / Keys
-# =====================================================
-# Certificate files
-*.p12
-*.pfx
-*.jks
-*.keystore
-*.truststore
-*.cer
-*.crt
-*.key
-*.pem
-*.p7b
-*.p7c
-*.p7m
-*.p7s
-
-# Private keys
-*.private
-*.secret
-*.key
-id_rsa
-id_dsa
-*.ppk
-
-# Credentials
-credentials.json
-secrets.json
-*.credentials
-*.secrets
-
-# =====================================================
-# Logs and Temporary Files
-# =====================================================
-logs/
-*.log
-*.log.*
-log/
-*.out
-*.pid
-*.seed
-*.pid.lock
-
-# Application logs
-application.log
-error.log
-access.log
-
-# =====================================================
-# Build and Deployment
-# =====================================================
-# Build outputs
-out/
-build/
-dist/
-target/
-bin/
-obj/
-
-# Deployment
-deploy/
-.deploy/
-*.war
-*.ear
-
-# =====================================================
-# Testing
-# =====================================================
-# Test coverage
-coverage/
-.nyc_output/
-*.coverage
-*.coverage.*
-.coverage.*
-
-# Test results
-test-results/
-test-output/
-surefire-reports/
-failsafe-reports/
-
-# =====================================================
-# Configuration (Sensitive)
-# =====================================================
-# Local configuration files
-application-local.properties
-application-local.yml
-application-dev.properties
-application-dev.yml
-config.local.*
-
-# =====================================================
-# Miscellaneous
-# =====================================================
-# Backup files
-*.bak
-*.backup
-*.old
-*.orig
-*.save
-*.swp
-*.tmp
-
-# Archives
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
 
 # OS generated files
+.DS_Store
 .DS_Store?
+._*
+.Spotlight-V100
+.Trashes
 ehthumbs.db
-Icon?
 Thumbs.db
-
-# Temporary folders
-tmp/
-temp/
-.tmp/
-.temp/
-
-# =====================================================
-# Project Specific
-# =====================================================
-# Deployment folder (if contains sensitive data)
-OT_deployment/
-
-# Local database dumps
-*.sql.dump
-*.sql.backup
-
-# Local scripts (if they contain sensitive info)
-setup-local.*
-config-local.*
-
-# =====================================================
-# Keep Important Files
-# =====================================================
-# Keep README.md
-!README.md
-
-# Keep setup scripts (they're safe)
-!database-setup.sql
-!database-setup.bat
-!database-setup.sh
-
-# Keep docker-compose files (but not override)
-!docker-compose.yml
-!docker-compose.override.yml.example
-
-# Keep example files
-!*.example
-!*.sample
-!*.template
-

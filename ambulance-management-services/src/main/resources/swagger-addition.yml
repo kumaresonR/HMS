@@ -1,0 +1,415 @@
+openapi: 3.0.3
+info:
+  title: Ambulance Management Services API
+  description: API documentation for managing ambulance services including drivers, fleet, maintenance, trips, and incidents.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8093
+    description: Local server
+
+paths:
+  /ambulance-drivers:
+    get:
+      summary: Get all ambulance drivers
+      operationId: getAllAmbulanceDrivers
+      tags:
+        - Ambulance Driver
+      responses:
+        '200':
+          description: List of ambulance drivers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AmbulanceDriverDto'
+    post:
+      summary: Create a new ambulance driver
+      operationId: createAmbulanceDriver
+      tags:
+        - Ambulance Driver
+      requestBody:
+        description: Ambulance driver data to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmbulanceDriverDto'
+        required: true
+      responses:
+        '201':
+          description: Ambulance driver created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbulanceDriverDto'
+
+  /ambulance-drivers/{id}:
+    get:
+      summary: Get ambulance driver by ID
+      operationId: getAmbulanceDriverById
+      tags:
+        - Ambulance Driver
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Ambulance driver details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbulanceDriverDto'
+        '404':
+          description: Ambulance driver not found
+    put:
+      summary: Update an ambulance driver
+      operationId: updateAmbulanceDriver
+      tags:
+        - Ambulance Driver
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated ambulance driver data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmbulanceDriverDto'
+        required: true
+      responses:
+        '200':
+          description: Ambulance driver updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbulanceDriverDto'
+        '404':
+          description: Ambulance driver not found
+    delete:
+      summary: Delete an ambulance driver
+      operationId: deleteAmbulanceDriver
+      tags:
+        - Ambulance Driver
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Ambulance driver deleted successfully
+        '404':
+          description: Ambulance driver not found
+
+  /ambulance-management:
+    get:
+      summary: Get all ambulance management records
+      operationId: getAllAmbulanceManagement
+      tags:
+        - Ambulance Management
+      responses:
+        '200':
+          description: List of ambulance management records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AmbulanceManagementDto'
+    post:
+      summary: Create a new ambulance management record
+      operationId: createAmbulanceManagement
+      tags:
+        - Ambulance Management
+      requestBody:
+        description: Ambulance management data to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmbulanceManagementDto'
+        required: true
+      responses:
+        '201':
+          description: Ambulance management created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbulanceManagementDto'
+
+  /ambulance-management/{id}:
+    get:
+      summary: Get ambulance management record by ID
+      operationId: getAmbulanceManagementById
+      tags:
+        - Ambulance Management
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Ambulance management details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbulanceManagementDto'
+        '404':
+          description: Ambulance management not found
+    put:
+      summary: Update an ambulance management record
+      operationId: updateAmbulanceManagement
+      tags:
+        - Ambulance Management
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated ambulance management data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmbulanceManagementDto'
+        required: true
+      responses:
+        '200':
+          description: Ambulance management updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbulanceManagementDto'
+        '404':
+          description: Ambulance management not found
+    delete:
+      summary: Delete ambulance management record
+      operationId: deleteAmbulanceManagement
+      tags:
+        - Ambulance Management
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Ambulance management deleted successfully
+        '404':
+          description: Ambulance management not found
+
+  /ambulance-trips:
+    get:
+      summary: Get all ambulance trips
+      operationId: getAllAmbulanceTrips
+      tags:
+        - Ambulance Trip
+      responses:
+        '200':
+          description: List of ambulance trips
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AmbulanceTripIncidentDto'
+    post:
+      summary: Create a new ambulance trip
+      operationId: createAmbulanceTrip
+      tags:
+        - Ambulance Trip
+      requestBody:
+        description: Ambulance trip data to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmbulanceTripIncidentDto'
+        required: true
+      responses:
+        '201':
+          description: Ambulance trip created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbulanceTripIncidentDto'
+
+  /ambulance-trips/{id}:
+    get:
+      summary: Get ambulance trip by ID
+      operationId: getAmbulanceTripById
+      tags:
+        - Ambulance Trip
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Ambulance trip details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbulanceTripIncidentDto'
+        '404':
+          description: Ambulance trip not found
+    put:
+      summary: Update an ambulance trip
+      operationId: updateAmbulanceTrip
+      tags:
+        - Ambulance Trip
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated ambulance trip data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmbulanceTripIncidentDto'
+        required: true
+      responses:
+        '200':
+          description: Ambulance trip updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbulanceTripIncidentDto'
+        '404':
+          description: Ambulance trip not found
+    delete:
+      summary: Delete ambulance trip
+      operationId: deleteAmbulanceTrip
+      tags:
+        - Ambulance Trip
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Ambulance trip deleted successfully
+        '404':
+          description: Ambulance trip not found
+
+components:
+  schemas:
+    AmbulanceDriverDto:
+      type: object
+      properties:
+        driverId:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        licenseNumber:
+          type: string
+        contactNumber:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        hireDate:
+          type: string
+          format: date
+    AmbulanceManagementDto:
+      type: object
+      properties:
+        ambulanceId:
+          type: integer
+          format: int64
+        licensePlate:
+          type: string
+        model:
+          type: string
+        manufactureYear:
+          type: integer
+        status:
+          type: string
+        lastServiceDate:
+          type: string
+          format: date-time
+        maintenanceId:
+          type: integer
+          format: int64
+        ambulanceIdForMaintenance:
+          type: integer
+          format: int64
+        maintenanceType:
+          type: string
+        maintenanceDate:
+          type: string
+          format: date-time
+        description:
+          type: string
+        cost:
+          type: number
+          format: double
+    AmbulanceTripIncidentDto:
+        type: object
+        properties:
+          tripId:
+            type: integer
+            format: int64
+          ambulanceId:
+            type: integer
+            format: int64
+          driverId:
+            type: integer
+            format: int64
+          startTime:
+            type: string
+            format: date-time
+          endTime:
+            type: string
+            format: date-time
+          startLocation:
+            type: string
+          endLocation:
+            type: string
+          distance:
+            type: number
+            format: double
+          incidentId:
+            type: integer
+            format: int64
+          tripIdForIncident:
+            type: integer
+            format: int64
+          incidentDescription:
+            type: string
+          incidentTime:
+            type: string
+            format: date-time
+          incidentLocation:
+            type: string
+          incidentStatus:
+            type: string
